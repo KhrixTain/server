@@ -3,29 +3,31 @@ services:
     image: owasp/modsecurity-crs:4.20.0-nginx-alpine-202511100111
     container_name: nginx-waf
     restart: unless-stopped
+    environment:
+      - PORT=8080          # puerto interno por defecto
+      - SSL_PORT=8443      # (lo usaremos después)
+      - SERVER_NAME=khrix.com.ar
     ports:
       - "80:8080"
-      - "443:8443"
+      # Más adelante, cuando tengamos SSL: - "443:8443"
     volumes:
-      # Tu sitio estático
       - ./html:/usr/share/nginx/html:ro
 
-      # Config propia del sitio
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      # 👇 NUEVO: template de default.conf
+      - ./nginx/default.conf.template:/etc/nginx/templates/conf.d/default.conf.template:ro
 
-      # Volúmenes compartidos con certbot
+      # Volúmenes para certbot (para más adelante)
       - certbot-etc:/etc/letsencrypt:ro
       - certbot-www:/var/www/certbot
 
   certbot:
     image: certbot/certbot
     container_name: certbot
-    # no expone puertos, solo usa volúmenes
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-www:/var/www/certbot
     entrypoint: sh
-    command: -c "echo 'Certbot listo. Ejecutá manualmente el comando certbot...'"
+    command: -c "echo 'Certbot listo. Después ejecutás certbot manualmente.'"
 
 volumes:
   certbot-etc:
