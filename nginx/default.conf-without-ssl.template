@@ -1,0 +1,19 @@
+server {
+    listen 8080;
+    listen [::]:8080;
+
+    server_name khrix.com.ar www.khrix.com.ar;
+
+    server_tokens off;
+
+    # Challenge de Let's Encrypt (desde certbot)
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    # Tu sitio estático mientras tanto
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+}
