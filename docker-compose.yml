@@ -9,7 +9,7 @@ services:
       - SERVER_NAME=khrix.com.ar
     ports:
       - "80:8080"
-      # Más adelante, cuando tengamos SSL: - "443:8443"
+      - "443:8443"
     volumes:
       - ./html:/usr/share/nginx/html:ro
 
