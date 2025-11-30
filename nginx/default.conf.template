@@ -26,6 +26,9 @@ server {
 
     server_name khrix.com.ar www.khrix.com.ar;
 
+    error_page 403 /custom_403.html;
+    error_page 404 /custom_404.html;
+
     # 🔑 Acá limpiás la cabecera Server para las respuestas “reales”
     more_clear_headers Server;
 
@@ -58,5 +61,15 @@ server {
     # ya que facilita la automatización y el mantenimiento de la renovación de certificados.
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
+    }
+
+    location = /custom_403.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    location = /custom_404.html {
+        root /usr/share/nginx/html;
+        internal;
     }
 }
