@@ -25,7 +25,7 @@ server {
     http2 on;
 
     server_name khrix.com.ar www.khrix.com.ar;
-    
+
     # 🔑 Acá limpiás la cabecera Server para las respuestas “reales”
     more_clear_headers Server;
 
@@ -33,10 +33,20 @@ server {
     ssl_certificate     /etc/letsencrypt/live/khrix.com.ar/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/khrix.com.ar/privkey.pem;
 
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
+
     # Opcional: algunos ajustes SSL básicos
     ssl_session_timeout 1d;
     ssl_session_cache   shared:SSL:10m;
     ssl_session_tickets off;
+
+    # OCSP stapling
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    resolver 1.1.1.1 1.0.0.1 valid=300s;
+    resolver_timeout 5s;
 
     # Sitio estático (tu carpeta ./html)
     location / {
