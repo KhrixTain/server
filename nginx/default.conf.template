@@ -5,8 +5,7 @@ server {
     listen [::]:8080;
 
     server_name khrix.com.ar www.khrix.com.ar;
-    server_tokens off;
-
+    
     # Necesario para el challenge HTTP-01 de Let's Encrypt
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
@@ -26,7 +25,6 @@ server {
     http2 on;
 
     server_name khrix.com.ar www.khrix.com.ar;
-    server_tokens off;
 
     # Certificados emitidos por certbot
     ssl_certificate     /etc/letsencrypt/live/khrix.com.ar/fullchain.pem;
@@ -48,4 +46,16 @@ server {
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
+}
+
+http {
+    server_tokens off;
+
+    # Quitar completamente la cabecera Server
+    more_clear_headers Server;
+
+    # si en vez de quitarla querés algo genérico:
+    # more_set_headers 'Server: web';
+
+    include /etc/nginx/conf.d/*.conf;
 }
