@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   nginx-waf:
     image: owasp/modsecurity-crs:4.20.0-nginx-alpine-202511100111
