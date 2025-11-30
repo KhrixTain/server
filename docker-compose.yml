@@ -4,8 +4,8 @@ services:
     container_name: nginx-waf
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:8080"
+      - "443:8443"
     volumes:
       # Tu sitio estático
       - ./html:/usr/share/nginx/html:ro
