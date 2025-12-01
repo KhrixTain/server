@@ -27,7 +27,7 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-www:/var/www/certbot
-      
+
   keycloak:
     image: quay.io/keycloak/keycloak:latest   # o una versión concreta, ej: 26.0
     container_name: keycloak
@@ -46,6 +46,9 @@ services:
       - KC_HTTP_RELATIVE_PATH=/keycloak
       - KC_HOSTNAME=khrix.com.ar
       - KC_HOSTNAME_PATH=/keycloak
+      - KC_PROXY_HEADERS=xforwarded
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin123
 
     command:
       - start-dev
