@@ -15,7 +15,7 @@ sudo docker compose up -d nginx-waf
 ### Corremos el certbot por primera vez
 
 ```bash
-sudo docker compose run --rm certbot   certonly   --webroot   --webroot-path=/var/www/certbot   -d khrix.com.ar -d www.khrix.com.ar   --agree-tos   -m cmaccarino97@gmail.com   --non-interactive
+sudo docker compose run --rm certbot   certonly   --webroot   --webroot-path=/var/www/certbot   -d khrix.com.ar -d www.khrix.com.ar -d keycloak.khrix.com.ar   --agree-tos   -m cmaccarino97@gmail.com   --non-interactive
 ```
 
 ### Damos acceso a los archivos generados

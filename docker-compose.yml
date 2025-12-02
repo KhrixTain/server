@@ -40,11 +40,11 @@ services:
       - KC_PROXY=edge
       - KC_PROXY_HEADERS=xforwarded
 
-      # Keycloak colgado en /keycloak
-      - KC_HTTP_RELATIVE_PATH=/keycloak
+      # Keycloak colgado en /
+      - KC_HTTP_RELATIVE_PATH=/
 
       # Cómo se ve hacia afuera
-      - KC_HOSTNAME=khrix.com.ar
+      - KC_HOSTNAME=keycloak.khrix.com.ar
       - KC_HOSTNAME_STRICT_HTTPS=true
 
       # Admin

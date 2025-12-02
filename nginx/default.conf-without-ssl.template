@@ -2,7 +2,7 @@ server {
     listen 8080;
     listen [::]:8080;
 
-    server_name khrix.com.ar www.khrix.com.ar;
+    server_name khrix.com.ar www.khrix.com.ar keycloak.khrix.com.ar;
 
     server_tokens off;
 
